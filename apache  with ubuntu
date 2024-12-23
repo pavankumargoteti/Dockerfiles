@@ -1,0 +1,22 @@
+# Start with a base image
+FROM ubuntu:latest
+
+# Update package list
+RUN apt-get -y update
+
+# Install Apache2
+RUN apt-get -y install apache2
+
+# Ensure the target directory exists
+RUN mkdir -p /var/www/html
+
+# Copy the index.html file into the Apache web directory
+COPY index.html /var/www/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache in the foreground
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+before running this create a index.html  file and insert some data into it 
